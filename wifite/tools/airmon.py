@@ -379,7 +379,7 @@ class Airmon(Dependency):
             elif pname == 'avahi-daemon' and Process.exists('service'):
                 Color.pl('{!} {O}stopping avahi-daemon ({R}service avahi-daemon stop{O})')
                 # Can't just pkill avahi-daemon; it's a service
-                Process(['service', 'avahi-daemon', 'stop']).wait()
+                Process(['systemctl', 'avahi-daemon', 'stop']).wait()
             else:
                 Color.pl('{!} {R}Terminating {O}conflicting process {R}%s{O} (PID {R}%s{O})' % (pname, pid))
                 with contextlib.suppress(Exception):
